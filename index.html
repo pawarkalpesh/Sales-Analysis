@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive sales analysis dashboard with revenue, profit, product and regional performance.">
+  <title>Sales Analysis Dashboard</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="./">
+        <span class="brand-icon">S</span>
+        <span>Sales<span class="brand-light">Analytics</span></span>
+      </a>
+      <p class="side-label">WORKSPACE</p>
+      <a class="nav-link active" href="#overview">▦ &nbsp; Overview</a>
+      <a class="nav-link" href="#products">▤ &nbsp; Products</a>
+      <a class="nav-link" href="#regions">◎ &nbsp; Regions</a>
+      <a class="nav-link" href="#trends">↗ &nbsp; Trends</a>
+      <div class="sidebar-bottom">
+        <span class="status-dot"></span>
+        Sample dataset loaded
+        <p>Sales Analysis Project</p>
+      </div>
+    </aside>
+
+    <main class="main" id="overview">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">BUSINESS INTELLIGENCE</p>
+          <h1>Sales Dashboard</h1>
+          <p class="subtitle">Monitor performance and discover business insights.</p>
+        </div>
+        <button class="button" id="downloadBtn">↓ Export CSV</button>
+      </header>
+
+      <section class="toolbar">
+        <div>
+          <label for="regionFilter">Region</label>
+          <select id="regionFilter">
+            <option value="All">All regions</option>
+            <option>North</option><option>South</option>
+            <option>East</option><option>West</option>
+          </select>
+        </div>
+        <div>
+          <label for="productFilter">Product</label>
+          <select id="productFilter">
+            <option value="All">All products</option>
+            <option>Laptop</option><option>Mobile</option>
+            <option>Headphones</option><option>Monitor</option>
+            <option>Keyboard</option>
+          </select>
+        </div>
+        <div class="date-note">
+          <span class="status-dot"></span>
+          January – December 2025
+        </div>
+      </section>
+
+      <section class="kpis" aria-label="Sales key performance indicators">
+        <article class="kpi">
+          <div class="kpi-heading">Total Revenue <span class="kpi-icon purple">₹</span></div>
+          <div class="kpi-value" id="totalRevenue">₹0</div>
+          <div class="kpi-foot">Total sales value</div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-heading">Total Profit <span class="kpi-icon green">↗</span></div>
+          <div class="kpi-value" id="totalProfit">₹0</div>
+          <div class="kpi-foot">Assumed 20% margin</div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-heading">Total Orders <span class="kpi-icon blue">▤</span></div>
+          <div class="kpi-value" id="totalOrders">0</div>
+          <div class="kpi-foot">Unique order IDs</div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-heading">Units Sold <span class="kpi-icon orange">▦</span></div>
+          <div class="kpi-value" id="totalUnits">0</div>
+          <div class="kpi-foot">Total quantity sold</div>
+        </article>
+      </section>
+
+      <section class="chart-grid">
+        <article class="panel" id="products">
+          <div class="panel-heading">
+            <div><h2>Revenue by Product</h2><p>Product-level sales performance</p></div>
+          </div>
+          <div class="chart-wrap"><canvas id="productChart"></canvas></div>
+        </article>
+        <article class="panel" id="regions">
+          <div class="panel-heading">
+            <div><h2>Revenue by Region</h2><p>Compare the four sales regions</p></div>
+          </div>
+          <div class="chart-wrap"><canvas id="regionChart"></canvas></div>
+        </article>
+        <article class="panel wide" id="trends">
+          <div class="panel-heading">
+            <div><h2>Monthly Revenue Trend</h2><p>Revenue movement throughout 2025</p></div>
+          </div>
+          <div class="chart-wrap trend-wrap"><canvas id="monthlyChart"></canvas></div>
+        </article>
+        <article class="panel wide">
+          <div class="panel-heading">
+            <div><h2>Revenue vs Profit</h2><p>Each point represents an order</p></div>
+          </div>
+          <div class="chart-wrap trend-wrap"><canvas id="scatterChart"></canvas></div>
+        </article>
+      </section>
+
+      <section class="bottom-grid">
+        <article class="panel">
+          <div class="panel-heading"><div><h2>Product Performance</h2><p>Ranked by revenue</p></div></div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Product</th><th>Revenue</th><th>Profit</th><th>Units</th></tr></thead>
+              <tbody id="productTable"></tbody>
+            </table>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel-heading"><div><h2>Business Insights</h2><p>Based on current filters</p></div></div>
+          <div id="insights" class="insights"></div>
+        </article>
+      </section>
+
+      <footer>
+        <span>Sales Analysis Dashboard</span>
+        <span>Demo data · 2025 · Built with HTML, CSS & JavaScript</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
